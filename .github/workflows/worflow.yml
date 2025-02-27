@@ -24,15 +24,15 @@ jobs:
     - name: Build for linux
       run: | 
             cd cmd/
-            set GOOS=linux 
-            set GOARCH=amd64 
+            export GOOS=linux 
+            export GOARCH=amd64 
             go build -o aws-explorer main.go 
 
     - name: Build for Windows
       run: | 
         cd cmd/
-        set GOOS=windows
-        set GOARCH=amd64 
+        export GOOS=windows
+        export GOARCH=amd64 
         go build -o aws-explorer.exe main.go
 
   release:
@@ -52,6 +52,13 @@ jobs:
         draft: false
         prerelease: false
 
+    - name: Check Linux Artifact
+      run: |
+        if [ ! -f cmd/aws-explorer ]; then
+          echo "Linux artifact not found!"
+          exit 1
+        fi
+
     - name: Upload Linux Artifact
       uses: actions/upload-release-asset@v1
       env:
@@ -62,6 +69,13 @@ jobs:
         asset_name: aws-explorer
         asset_content_type: application/octet-stream
 
+    - name: Check Windows Artifact
+      run: |
+        if [ ! -f cmd/aws-explorer.exe ]; then
+          echo "Windows artifact not found!"
+          exit 1
+        fi
+
     - name: Upload Windows Artifact
       uses: actions/upload-release-asset@v1
       env:
@@ -71,5 +85,4 @@ jobs:
         asset_path: cmd/aws-explorer.exe
         asset_name: aws-explorer.exe
         asset_content_type: application/octet-stream
-
 
