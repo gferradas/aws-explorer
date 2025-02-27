@@ -76,13 +76,6 @@ jobs:
         draft: false
         prerelease: false
 
-    - name: Check Linux Artifact
-      run: |
-        if [ ! -f cmd/aws-explorer ]; then
-          echo "Linux artifact not found!"
-          exit 1
-        fi
-
     - name: Upload Linux Artifact
       uses: actions/upload-release-asset@v1
       env:
@@ -92,13 +85,6 @@ jobs:
         asset_path: cmd/aws-explorer
         asset_name: aws-explorer
         asset_content_type: application/octet-stream
-
-    - name: Check Mac Artifact
-      run: |
-        if [ ! -f cmd/aws-explorer ]; then
-          echo "Mac artifact not found!"
-          exit 1
-        fi
 
     - name: Upload Mac Artifact
       uses: actions/upload-release-asset@v1
