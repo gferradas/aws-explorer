@@ -210,9 +210,9 @@ func main() {
 			if action == "Create-Change-Set" {
 				changeSetName := "aws-explorer-" + templateName
 				if useCliAccountCheckbox.IsChecked() {
-					output, err = executeShellCommand("aws", "cloudformation", "create-change-set", "--change-set-name", changeSetName, "--stack-name", "infra-alarms", "--change-set-type", changeSetType, "--template-body", "file://"+templatePath, "--parameters", "file://"+parametersPath)
+					output, err = executeShellCommand("aws", "cloudformation", "create-change-set", "--change-set-name", changeSetName, "--stack-name", templateName, "--change-set-type", changeSetType, "--template-body", "file://"+templatePath, "--parameters", "file://"+parametersPath)
 				} else {
-					output, err = executeShellCommand("aws", "cloudformation", "create-change-set", "--change-set-name", changeSetName, "--stack-name", "infra-alarms", "--change-set-type", changeSetType, "--template-body", "file://"+templatePath, "--parameters", "file://"+parametersPath, "--profile", account)
+					output, err = executeShellCommand("aws", "cloudformation", "create-change-set", "--change-set-name", changeSetName, "--stack-name", templateName, "--change-set-type", changeSetType, "--template-body", "file://"+templatePath, "--parameters", "file://"+parametersPath, "--profile", account)
 				}
 			} else {
 				if useCliAccountCheckbox.IsChecked() {
