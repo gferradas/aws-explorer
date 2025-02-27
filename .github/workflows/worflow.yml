@@ -18,6 +18,7 @@ jobs:
     - name: Build for linux
       run: | 
             go mod init cmd/main.go
+            cd cmd/
             go mod tidy
             set GOOS=linux 
             set GOARCH=amd64 
@@ -26,6 +27,7 @@ jobs:
     - name: Build for Windows
       run: | 
         go mod init cmd/main.go
+        cd cmd/
         go mod tidy
         set GOOS=linux 
         set GOARCH=amd64 
