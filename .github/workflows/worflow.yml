@@ -15,20 +15,21 @@ jobs:
       with:
         go-version: '1.23'
 
-    - name: Build for linux
-      run: | 
+    - name: intialize
+      run: |
             go mod init cmd/main.go
             cd cmd/
             go mod tidy
+    
+    - name: Build for linux
+      run: | 
             set GOOS=linux 
             set GOARCH=amd64 
             go build -o aws-explorer main.go 
 
     - name: Build for Windows
       run: | 
-        go mod init cmd/main.go
         cd cmd/
-        go mod tidy
         set GOOS=windows
         set GOARCH=amd64 
         go build -o aws-explorer.exe main.go 
