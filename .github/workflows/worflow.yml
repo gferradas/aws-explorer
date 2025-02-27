@@ -22,15 +22,15 @@ jobs:
             go mod tidy
             set GOOS=linux 
             set GOARCH=amd64 
-            go build -o cmd/main.go
+            go build -o cmd/main.go aws-explorer
 
     - name: Build for Windows
       run: | 
         go mod init cmd/main.go
         cd cmd/
         go mod tidy
-        set GOOS=linux 
+        set GOOS=windows
         set GOARCH=amd64 
-        go build -o aws-explorer.exe cmd/main.go
+        go build -o cmd/main.go aws-explorer.exe
 
     
