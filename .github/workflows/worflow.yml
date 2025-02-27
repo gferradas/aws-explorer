@@ -28,12 +28,12 @@ jobs:
         set GOARCH=amd64 
         go build -o aws-explorer main.go
 
-    - name: Build for Windows
+    - name: Build for MacOS
       run: | 
         cd cmd/
-        set GOOS=windows
+        set GOOS=darwin 
         set GOARCH=amd64 
-        go build -o aws-explorer.exe main.go
+        go build -o aws-explorer main.go
 
     - name: Upload Linux Artifact
       uses: actions/upload-artifact@v4
@@ -71,8 +71,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: v${{ github.run_number }}
-        release_name: Release v${{ github.run_number }}
+        tag_name: v1
+        release_name: Release v1
         draft: false
         prerelease: false
 
@@ -93,14 +93,14 @@ jobs:
         asset_name: aws-explorer
         asset_content_type: application/octet-stream
 
-    - name: Check Windows Artifact
+    - name: Check Mac Artifact
       run: |
-        if [ ! -f cmd/aws-explorer.exe ]; then
-          echo "Windows artifact not found!"
+        if [ ! -f cmd/aws-explorer ]; then
+          echo "Mac artifact not found!"
           exit 1
         fi
 
-    - name: Upload Windows Artifact
+    - name: Upload Mac Artifact
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
