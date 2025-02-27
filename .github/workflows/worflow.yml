@@ -23,6 +23,7 @@ jobs:
     
     - name: Build for linux
       run: | 
+            cd cmd/
             set GOOS=linux 
             set GOARCH=amd64 
             go build -o aws-explorer main.go 
