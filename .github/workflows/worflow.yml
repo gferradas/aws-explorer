@@ -39,13 +39,13 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: linux-artifact
-        path: cmd/aws-explorer
+        path: cmd/aws-explorer-linux
 
     - name: Upload Mac Artifact
       uses: actions/upload-artifact@v4
       with:
         name: Mac-artifact
-        path: cmd/aws-explorer.exe
+        path: cmd/aws-explorer-mac  
 
   release:
     needs: build
