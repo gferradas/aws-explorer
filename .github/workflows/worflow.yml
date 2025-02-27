@@ -15,18 +15,18 @@ jobs:
       with:
         go-version: '1.23'
 
-    - name: intialize
+    - name: Initialize
       run: |
-            go mod init cmd/main.go
-            cd cmd/
-            go mod tidy
+        go mod init cmd/main.go
+        cd cmd/
+        go mod tidy
     
-    - name: Build for linux
+    - name: Build for Linux
       run: | 
-            cd cmd/
-            set GOOS=linux 
-            set GOARCH=amd64 
-            go build -o aws-explorer main.go 
+        cd cmd/
+        set GOOS=linux 
+        set GOARCH=amd64 
+        go build -o aws-explorer main.go
 
     - name: Build for Windows
       run: | 
@@ -35,11 +35,35 @@ jobs:
         set GOARCH=amd64 
         go build -o aws-explorer.exe main.go
 
+    - name: Upload Linux Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: linux-artifact
+        path: cmd/aws-explorer
+
+    - name: Upload Windows Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: windows-artifact
+        path: cmd/aws-explorer.exe
+
   release:
     needs: build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+
+    - name: Download Linux Artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: linux-artifact
+        path: cmd/
+
+    - name: Download Windows Artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: windows-artifact
+        path: cmd/
 
     - name: Create Release
       id: create_release
@@ -85,4 +109,3 @@ jobs:
         asset_path: cmd/aws-explorer.exe
         asset_name: aws-explorer.exe
         asset_content_type: application/octet-stream
-
