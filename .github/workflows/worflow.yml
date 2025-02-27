@@ -58,7 +58,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: cmd/
+        asset_path: cmd/aws-explorer
         asset_name: aws-explorer
         asset_content_type: application/octet-stream
 
@@ -68,7 +68,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: cmd/
+        asset_path: cmd/aws-explorer.exe
         asset_name: aws-explorer.exe
         asset_content_type: application/octet-stream
 
