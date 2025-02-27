@@ -19,7 +19,7 @@ jobs:
       run: | 
             set GOOS=linux 
             set GOARCH=amd64 
-            go build -o aws-explorer/main.go
+            go build -o cmd/main.go
 
     - name: Build for Windows
       run: | 
