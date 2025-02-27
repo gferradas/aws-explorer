@@ -17,12 +17,14 @@ jobs:
 
     - name: Build for linux
       run: | 
+            go mod init cmd/main.go
             set GOOS=linux 
             set GOARCH=amd64 
             go build -o cmd/main.go
 
     - name: Build for Windows
       run: | 
+        go mod init cmd/main.go
         set GOOS=linux 
         set GOARCH=amd64 
         go build -o aws-explorer.exe cmd/main.go
