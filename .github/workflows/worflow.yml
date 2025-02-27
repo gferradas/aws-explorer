@@ -26,14 +26,14 @@ jobs:
         cd cmd/
         set GOOS=linux 
         set GOARCH=amd64 
-        go build -o aws-explorer main.go
+        go build -o aws-explorer-linux main.go
 
     - name: Build for MacOS
       run: | 
         cd cmd/
         set GOOS=darwin 
         set GOARCH=amd64 
-        go build -o aws-explorer main.go
+        go build -o aws-explorer-mac main.go
 
     - name: Upload Linux Artifact
       uses: actions/upload-artifact@v4
@@ -41,10 +41,10 @@ jobs:
         name: linux-artifact
         path: cmd/aws-explorer
 
-    - name: Upload Windows Artifact
+    - name: Upload Mac Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: windows-artifact
+        name: Mac-artifact
         path: cmd/aws-explorer.exe
 
   release:
@@ -59,10 +59,10 @@ jobs:
         name: linux-artifact
         path: cmd/
 
-    - name: Download Windows Artifact
+    - name: Download Mac Artifact
       uses: actions/download-artifact@v4
       with:
-        name: windows-artifact
+        name: Mac-artifact
         path: cmd/
 
     - name: Create Release
