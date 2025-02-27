@@ -82,8 +82,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: cmd/aws-explorer
-        asset_name: aws-explorer
+        asset_path: cmd/aws-explorer-linux
+        asset_name: aws-explorer-linux
         asset_content_type: application/octet-stream
 
     - name: Upload Mac Artifact
@@ -92,6 +92,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: cmd/aws-explorer.exe
-        asset_name: aws-explorer.exe
+        asset_path: cmd/aws-explorer-mac
+        asset_name: aws-explorer-mac
         asset_content_type: application/octet-stream
