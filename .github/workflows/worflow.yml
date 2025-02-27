@@ -24,15 +24,15 @@ jobs:
     - name: Build for linux
       run: | 
             cd cmd/
-            export GOOS=linux 
-            export GOARCH=amd64 
+            set GOOS=linux 
+            set GOARCH=amd64 
             go build -o aws-explorer main.go 
 
     - name: Build for Windows
       run: | 
         cd cmd/
-        export GOOS=windows
-        export GOARCH=amd64 
+        set GOOS=windows
+        set GOARCH=amd64 
         go build -o aws-explorer.exe main.go
 
   release:
