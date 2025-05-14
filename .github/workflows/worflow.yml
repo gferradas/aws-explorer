@@ -95,3 +95,8 @@ jobs:
         asset_path: cmd/aws-explorer-mac
         asset_name: aws-explorer-mac
         asset_content_type: application/octet-stream
+
+    - name: echo
+      run: |
+        echo "Linux and Mac artifacts have been uploaded to the release."
+        echo "Release URL: ${{ steps.create_release.outputs.html_url }}"
